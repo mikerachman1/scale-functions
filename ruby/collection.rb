@@ -16,6 +16,21 @@ class Collection
     @items.count
   end
 
+  def switch_all_units
+  end
+
+  def order_asc
+  end
+
+  def order_desc
+  end
+
+  def average
+  end
+
+  def total
+  end
+
 end
 
 # col1 = Collection.new('col1')
