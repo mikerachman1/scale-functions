@@ -30,6 +30,7 @@ class Collection
   end
 
   def order_asc
+
   end
 
   def order_desc
@@ -41,6 +42,16 @@ class Collection
   def total
   end
 
+  def conformed_units?
+    items_units = []
+    
+    @items.each do |item|
+      items_units.push(item.unit)  
+    end
+
+    items_units.uniq.size == 1 ? true : false
+  end
+
 end
 
 col1 = Collection.new('col1')
@@ -50,7 +61,8 @@ col1.add_item(ball)
 bat = Item.new('bat', 500, 'g')
 col1.add_item(bat)
 
+puts col1.conformed_units?
+
 col1.conform_all_units('g')
 
-puts col1.items[0].weight
-puts col1.items[0].unit
+puts col1.conformed_units?
