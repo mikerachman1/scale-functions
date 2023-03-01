@@ -56,6 +56,13 @@ class Collection
   end
 
   def total
+    unless self.conformed_units?
+      puts "Units not conformed please #conform_all_units before totaling"
+    else
+      items_weights = []
+      @items.each { |item| items_weights.push(item.weight) }
+      items_weights.sum
+    end
   end
 
   def conformed_units?
@@ -70,15 +77,15 @@ class Collection
 
 end
 
-col1 = Collection.new('col1')
-ball = Item.new('ball', 5, 'oz')
-col1.add_item(ball)
+# col1 = Collection.new('col1')
+# ball = Item.new('ball', 5, 'oz')
+# col1.add_item(ball)
 
-bat = Item.new('bat', 500, 'g')
-col1.add_item(bat)
+# bat = Item.new('bat', 500, 'g')
+# col1.add_item(bat)
 
-col1.average
+# col1.average
 
-col1.conform_all_units('g')
+# col1.conform_all_units('g')
 
-puts col1.average
+# puts col1.total
