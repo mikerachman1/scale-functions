@@ -30,10 +30,19 @@ class Collection
   end
 
   def order_asc
-
+    unless self.conformed_units?
+      puts "Units not conformed please #conform_all_units before ordering"
+    else
+      @items.sort! { |a, b| a.weight <=> b.weight }
+    end
   end
 
   def order_desc
+    unless self.conformed_units?
+      puts "Units not conformed please #conform_all_units before ordering"
+    else
+      @items.sort! { |a, b| b.weight <=> a.weight }
+    end
   end
 
   def average
@@ -61,8 +70,14 @@ col1.add_item(ball)
 bat = Item.new('bat', 500, 'g')
 col1.add_item(bat)
 
-puts col1.conformed_units?
+
 
 col1.conform_all_units('g')
 
-puts col1.conformed_units?
+puts col1.items[0].weight
+puts col1.items[1].weight
+
+col1.order_desc
+
+puts col1.items[0].weight
+puts col1.items[1].weight
