@@ -17,6 +17,14 @@ class Collection
     @items.count
   end
 
+  def conformed_units?
+    items_units = []
+    
+    @items.each { |item| items_units.push(item.unit) }
+
+    items_units.uniq.size == 1 ? true : false
+  end
+
   def conform_all_units(unit_to_swap)
     unless unit_to_swap == 'g' || unit_to_swap == 'oz'
       puts "Please try again passing either (g) or (oz) as argument"
@@ -68,14 +76,6 @@ class Collection
     items_weights = []
     @items.each { |item| items_weights.push(item.weight) }
     items_weights.sum
-  end
-
-  def conformed_units?
-    items_units = []
-    
-    @items.each { |item| items_units.push(item.unit) }
-
-    items_units.uniq.size == 1 ? true : false
   end
 
 end
