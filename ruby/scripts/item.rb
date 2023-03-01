@@ -42,7 +42,3 @@ class Item
     return @@quantity
   end
 end
-
-# ball = Item.new('ball', 5, 'oz')
-
-# puts ball.tare(1.2)
