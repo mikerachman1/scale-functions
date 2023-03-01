@@ -46,6 +46,13 @@ class Collection
   end
 
   def average
+    unless self.conformed_units?
+      puts "Units not conformed please #conform_all_units before averaging"
+    else
+      items_weights = []
+      @items.each { |item| items_weights.push(item.weight) }
+      items_weights.sum / items_weights.length
+    end
   end
 
   def total
@@ -70,14 +77,8 @@ col1.add_item(ball)
 bat = Item.new('bat', 500, 'g')
 col1.add_item(bat)
 
-
+col1.average
 
 col1.conform_all_units('g')
 
-puts col1.items[0].weight
-puts col1.items[1].weight
-
-col1.order_desc
-
-puts col1.items[0].weight
-puts col1.items[1].weight
+puts col1.average
