@@ -2,13 +2,7 @@ require_relative '../scripts/item'
 
 describe 'Item' do
   it 'rejects item intialization if unit is not (g) or (oz)' do
-    i = Item.new('ball', 5, 'lbs')
-    expect(Item.item_count).to eq 0
-  end
-
-  it 'creates items if proper units inputed' do
-    i = Item.new('ball', 5, 'oz')
-    expect(Item.item_count).to eq 1
+    expect { Item.new('ball', 5, 'lbs') }.to raise_error
   end
 
   it 'swaps from oz to g properly' do

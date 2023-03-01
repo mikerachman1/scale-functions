@@ -7,7 +7,7 @@ class Item
   def initialize(name, weight, unit)
     # check for valid units
     unless unit == "g" || unit == "oz"
-      puts "VALID UNITS ARE (g) OR (oz)"
+      raise "VALID UNITS ARE (g) OR (oz)"
     else
       @name = name
       @weight = weight
