@@ -1,7 +1,8 @@
 require_relative 'item'
 
 class Collection
-  attr_reader :name, :items
+  attr_reader :name
+  attr_accessor :items
 
   def initialize(name)
     @name = name
@@ -16,7 +17,16 @@ class Collection
     @items.count
   end
 
-  def switch_all_units
+  def conform_all_units(unit_to_swap)
+    unless unit_to_swap == 'g' || unit_to_swap == 'oz'
+      puts "Please try again passing either (g) or (oz)"
+    else
+      @items.each do |item|
+        if item.unit != unit_to_swap
+          item.switch_units
+        end
+      end
+    end
   end
 
   def order_asc
@@ -33,6 +43,14 @@ class Collection
 
 end
 
-# col1 = Collection.new('col1')
-# ball = Item.new('ball', 5, 'oz')
-# col1.add_item(ball)
+col1 = Collection.new('col1')
+ball = Item.new('ball', 5, 'oz')
+col1.add_item(ball)
+
+bat = Item.new('bat', 500, 'g')
+col1.add_item(bat)
+
+col1.conform_all_units('g')
+
+puts col1.items[0].weight
+puts col1.items[0].unit
